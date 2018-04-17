@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.soccer.entity.Stat" table = "STAT">
+
+        <meta attribute = "class-description">
+            This class contains the Sale detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "STAT_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name = "score_team1" column = "SCORE_TEAM1" type = "int"/>
+        <property name = "score_team2" column = "SCORE_TEAM2" type = "int"/>
+
+        <many-to-one name = "stat_event_type" column = "STAT_STAT_EVENT_TYPE" unique="true"
+                     class="com.soccer.entity.Stat_Event_Type" not-null="true" lazy="false"/>
+
+
+    </class>
+
+</hibernate-mapping>

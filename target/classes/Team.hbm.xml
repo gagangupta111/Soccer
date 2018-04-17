@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.soccer.entity.Team" table = "TEAM">
+
+        <meta attribute = "class-description">
+            This class contains the Sale detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "TEAM_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name = "name" column = "TEAM_NAME" type = "string"/>
+
+        <many-to-one name = "manager" column = "TEAM_MANAGER" unique="true"
+                     class="com.soccer.entity.Player" not-null="true" lazy="false"/>
+        <many-to-one name = "coach" column = "TEAM_COACH" unique="true"
+                     class="com.soccer.entity.Player" not-null="true" lazy="false"/>
+        <many-to-one name = "jersey" column = "TEAM_JERSEY" unique="true"
+                     class="com.soccer.entity.Jersey" not-null="true" lazy="false"/>
+
+        <set name="players" table="TEAM_PLAYER"       inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="TEAM_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.soccer.entity.Player">
+                <column name="PLAYER_ID" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="substitutes" table="TEAM_SUBSTITUTE"       inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="TEAM_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.soccer.entity.Player">
+                <column name="PLAYER_ID" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="sponsors" table="TEAM_SPONSOR"       inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="TEAM_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.soccer.entity.Sponsor">
+                <column name="SPONSOR_ID" not-null="true" />
+            </many-to-many>
+        </set>
+
+    </class>
+
+</hibernate-mapping>

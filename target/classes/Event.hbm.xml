@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.soccer.entity.Event" table = "EVENT_LIVE">
+
+        <meta attribute = "class-description">
+            This class contains the Sale detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "EVENT_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name = "start_time" column = "EVENT_START_TIME" type = "date"/>
+        <property name = "end_time" column = "EVENT_END_TIME" type = "date"/>
+
+        <many-to-one name = "player" column = "EVENT_PLAYER" unique="true"
+                     class="com.soccer.entity.Player" not-null="true" lazy="false"/>
+
+        <many-to-one name = "stat_event_type" column = "EVENT_STAT_EVENT_TYPE" unique="true"
+                     class="com.soccer.entity.Stat_Event_Type" not-null="true" lazy="false"/>
+
+    </class>
+
+</hibernate-mapping>

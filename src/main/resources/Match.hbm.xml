@@ -1,0 +1,47 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.soccer.entity.Match" table = "MATCH_LIVE">
+
+        <meta attribute = "class-description">
+            This class contains the Sale detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "MATCH_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name = "when" column = "MATCH_WHEN" type = "date"/>
+
+        <many-to-one name = "team1" column = "MATCH_TEAM1" unique="true"
+                     class="com.soccer.entity.Team" not-null="true" lazy="false"/>
+
+        <many-to-one name = "team2" column = "MATCH_TEAM2" unique="true"
+                     class="com.soccer.entity.Team" not-null="true" lazy="false"/>
+
+        <many-to-one name = "stadium" column = "MATCH_STADIUM" unique="true"
+                     class="com.soccer.entity.Stadium" not-null="true" lazy="false"/>
+
+        <set name="stats" table="MATCH_STAT"       inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="MATCH_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.soccer.entity.Stat">
+                <column name="STAT_ID" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="timeline" table="MATCH_EVENT"       inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="MATCH_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.soccer.entity.Event">
+                <column name="EVENT_ID" not-null="true" />
+            </many-to-many>
+        </set>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.soccer.entity.Stadium" table = "STADIUM">
+
+        <meta attribute = "class-description">
+            This class contains the Sale detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "STADIUM_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name = "name" column = "STADIUM_NAME" type = "string"/>
+
+        <many-to-one name = "address" column = "STADIUM_ADDRESS" unique="true"
+                     class="com.soccer.entity.Address" not-null="true" lazy="false"/>
+
+
+    </class>
+
+</hibernate-mapping>

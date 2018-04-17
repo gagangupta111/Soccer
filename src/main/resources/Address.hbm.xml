@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "com.soccer.entity.Address" table = "ADDRESS">
+
+        <meta attribute = "class-description">
+            This class contains the Sale detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "ADDRESS_ID">
+            <generator class="native"/>
+        </id>
+
+        <property name = "city" column = "ADDRESS_CITY" type = "string"/>
+        <property name = "state" column = "ADDRESS_STATE" type = "string"/>
+        <property name = "pincode" column = "ADDRESS_PINCODE" type = "int"/>
+        <property name = "latitude" column = "ADDRESS_lATITUDE" type = "double"/>
+        <property name = "longitude" column = "ADDRESS_LONGITUDE" type = "double"/>
+
+    </class>
+
+</hibernate-mapping>
