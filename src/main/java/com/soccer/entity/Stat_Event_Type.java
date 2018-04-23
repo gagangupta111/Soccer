@@ -23,6 +23,9 @@ public class Stat_Event_Type {
         this.name = name;
     }
 
+    public Stat_Event_Type() {
+    }
+
     public Integer getId() {
         return id;
     }
